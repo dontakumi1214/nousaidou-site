@@ -1,3 +1,11 @@
+// =====================================================
+// ★ メール設定 ★
+// お問い合わせフォームの送信先メールアドレスをここで設定してください
+// =====================================================
+const CONFIG = {
+  EMAIL: 'condtakumi@gmail.com'  // ← ここにご自身のメールアドレスを入力
+};
+
 // ===== Header scroll effect =====
 const header = document.getElementById('header');
 
@@ -13,18 +21,24 @@ window.addEventListener('scroll', () => {
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+function closeMobileMenu() {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   mobileMenu.classList.toggle('active');
   document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
 });
 
+mobileMenuClose.addEventListener('click', closeMobileMenu);
+
 document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-    document.body.style.overflow = '';
-  });
+  link.addEventListener('click', closeMobileMenu);
 });
 
 // ===== Scroll animation (Intersection Observer) =====
@@ -87,8 +101,23 @@ document.querySelectorAll('.work-card').forEach(card => {
 // ===== Form submit =====
 function handleSubmit(e) {
   e.preventDefault();
-  alert('お問い合わせありがとうございます。\n担当者より折り返しご連絡いたします。');
-  e.target.reset();
+  const form = e.target;
+  const name = form.querySelector('input[type="text"]').value;
+  const email = form.querySelector('input[type="email"]').value;
+  const category = form.querySelector('select').value;
+  const message = form.querySelector('textarea').value;
+
+  const subject = encodeURIComponent('【納幸堂HP】お問い合わせ: ' + category);
+  const body = encodeURIComponent(
+    'お名前: ' + name + '\n' +
+    'メールアドレス: ' + email + '\n' +
+    'お問い合わせ種別: ' + category + '\n\n' +
+    'メッセージ:\n' + message
+  );
+
+  window.location.href = 'mailto:' + CONFIG.EMAIL + '?subject=' + subject + '&body=' + body;
+  alert('メールアプリが起動します。\nそのまま送信してください。');
+  form.reset();
 }
 
 // ===== Smooth scroll for anchor links =====
