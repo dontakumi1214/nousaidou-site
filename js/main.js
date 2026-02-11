@@ -75,6 +75,15 @@ document.querySelectorAll('.number-value').forEach(el => {
   counterObserver.observe(el);
 });
 
+// ===== Work card video hover play =====
+document.querySelectorAll('.work-card').forEach(card => {
+  const video = card.querySelector('.work-card-video');
+  if (video) {
+    card.addEventListener('mouseenter', () => video.play());
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+  }
+});
+
 // ===== Form submit =====
 function handleSubmit(e) {
   e.preventDefault();
