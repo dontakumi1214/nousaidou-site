@@ -294,7 +294,7 @@ ul {
 }
 
 .hero-logo-img {
-  height: 260px;
+  height: 450px;
   width: auto;
   margin: 0 auto;
   mix-blend-mode: multiply;
@@ -1106,7 +1106,7 @@ ul {
 /* ===== Responsive (Tablet) ===== */
 @media (max-width: 1024px) {
   .hero-logo-img {
-    height: 200px;
+    height: 320px;
   }
 
   .about-content,
@@ -1164,7 +1164,7 @@ ul {
   }
 
   .hero-logo-img {
-    height: 140px;
+    height: 200px;
   }
 
   .hero-subtitle {
