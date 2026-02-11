@@ -276,8 +276,8 @@ ul {
   z-index: 1;
 }
 
-.hero::before { left: 20%; }
-.hero::after  { right: 20%; }
+.hero::before { content: none; }
+.hero::after  { content: none; }
 
 .hero-content {
   position: relative;
@@ -1164,7 +1164,7 @@ ul {
   }
 
   .hero-logo-img {
-    height: 200px;
+    height: 140px;
   }
 
   .hero-subtitle {
